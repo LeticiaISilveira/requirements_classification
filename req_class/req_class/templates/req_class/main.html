@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requisitos de Classificação</title>
+    <style>
+        .language-selector {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .language-selector img {
+            width: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titulo">Requisitos de Classificação</h1>
+    
+    <form action="/processar" method="POST" enctype="multipart/form-data">
+        <label for="requisitos">Insira os requisitos:</label>
+        <textarea id="requisitos" name="requisitos" rows="6" cols="50"></textarea><br><br>
+
+        <label for="arquivo">Ou selecione um arquivo:</label>
+        <input type="file" id="arquivo" name="arquivo" style="display: none;">
+        <input type="text" id="arquivo-nome" readonly>
+        <button type="button" onclick="document.getElementById('arquivo').click()">Selecionar Arquivo</button><br><br>
+
+        <input type="submit" value="Processar">
+    </form>
+
+    <div class="language-selector">
+        <img src="bandeira_ingles.png" alt="Inglês" onclick="setLanguage('en')">
+        <img src="bandeira_portugues.png" alt="Português" onclick="setLanguage('pt')">
+        <img src="bandeira_espanhol.png" alt="Espanhol" onclick="setLanguage('es')">
+    </div>
+
+    <script>
+        function setLanguage(language) {
+            var tituloH1 = document.getElementById('titulo');
+            var requisitosLabel = document.querySelector('label[for="requisitos"]');
+            var arquivoLabel = document.querySelector('label[for="arquivo"]');
+            var processarButton = document.querySelector('input[type="submit"]');
+
+            if (language === 'en') {
+                tituloH1.textContent = 'Requirements Classification';
+                requisitosLabel.textContent = 'Enter the requirements:';
+                arquivoLabel.textContent = 'Or select a file:';
+                processarButton.value = 'Process';
+            } else if (language === 'pt') {
+                tituloH1.textContent = 'Classificação de Requisitos';
+                requisitosLabel.textContent = 'Insira os requisitos:';
+                arquivoLabel.textContent = 'Ou selecione um arquivo:';
+                processarButton.value = 'Processar';
+            } else if (language === 'es') {
+                tituloH1.textContent = 'Clasificación de Requisitos';
+                requisitosLabel.textContent = 'Ingrese los requisitos:';
+                arquivoLabel.textContent = 'O seleccione un archivo:';
+                processarButton.value = 'Procesar';
+            }
+        }
+    </script>
+</body>
+</html>
